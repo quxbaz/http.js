@@ -22,7 +22,9 @@ module.exports = {
       request.onload = function() {
         resolve(request.response);
       };
-      request.onerror = console.error.bind(console, 'GET error:', request.response);
+      request.onerror = function() {
+        reject(request.response);
+      };
     });
     request.send();
     return promise;
